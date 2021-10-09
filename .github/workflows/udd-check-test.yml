@@ -1,0 +1,10 @@
+name: udd check test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: kakomimasu/github-actions-test/.github/workflows/udd-check.yml@main
+    with:
+      deps_file: udd-check/deps.ts
