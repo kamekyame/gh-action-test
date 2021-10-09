@@ -5,6 +5,6 @@ on:
 
 jobs:
   call-workflow:
-    uses: kamekyame/gh-actions-test/.github/workflows/udd-check.yml@main
-    with:
-      deps_file: udd-check/deps.ts
+    uses: kamekyame/gh-actions-test/.github/workflows/test.yml@main
+    # with:
+    #   deps_file: udd-check/deps.ts
