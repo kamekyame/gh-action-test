@@ -42,8 +42,8 @@ jobs:
             ls
             cat update.txt
             echo "aaa"
-            sed -n -e '/^Successfully updated:$/,$p' update.txt > sed.txt
-            cat sed.txt
+            sed -i -e '/^Successfully updated:$/,$p' update.txt
+            cat update.txt
             echo "bbb"
             sed -e '1,$p' update.txt
         - name: Git diff
