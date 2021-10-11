@@ -41,6 +41,7 @@ jobs:
             udd ${{ inputs.deps_file }} > update.txt
             ls
             cat update.txt
+            echo "aaa"
             sed -n -e '/^Successfully updated:$/,$p' update.txt
         - name: Git diff
           id: diff
