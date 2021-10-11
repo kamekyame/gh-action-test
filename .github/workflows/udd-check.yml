@@ -42,7 +42,7 @@ jobs:
             ls
             cat update.txt
             echo "aaa"
-            sed -e '/Successfully updated:/,$p' update.txt
+            sed -i -e '/Successfully updated:/,$p' update.txt
             echo 'ccc'
             cat update.txt
             echo "bbb"
