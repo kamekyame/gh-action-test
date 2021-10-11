@@ -42,15 +42,15 @@ jobs:
             ls
             cat update.txt
             echo "aaa"
-            sed -n -e '/^Successfully updated:$/,$p' update.txt
+            sed -n -e '/^Successfully updated:$/,$p' update.txt > sed.txt
+            cat sed.txt
+            echo "bbb"
         - name: Git diff
           id: diff
           continue-on-error: true
           run: |
             git add ${{ inputs.deps_file }}
             git diff --cached --quiet ${{ inputs.deps_file }}
-        - run: |
-            echo ${{ steps.diff.outcome }}
         - name: Create Branch Name
           if: steps.diff.outcome == 'failure'
           id: branch
