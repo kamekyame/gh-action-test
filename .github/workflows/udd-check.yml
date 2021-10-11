@@ -47,16 +47,16 @@ jobs:
         - run: |
             echo ${{ steps.diff.outcome }}
         - name: Git checkout
-          if: steps.diff.outcome == 'success'
+          if: steps.diff.outcome == 'failure'
           run: | 
             git checkout -b actions/udd
         - name: Git commit
-          if: steps.diff.outcome == 'success'
+          if: steps.diff.outcome == 'failure'
           run: |
             git commit -m "Update dependency"
             git push --set-upstream origin actions/udd
         - name: Create Pull Request
-          if: steps.diff.outcome == 'success'
+          if: steps.diff.outcome == 'failure'
           run: gh pr create --title "Update Deno Dependency" --body ""
           env:
             GH_TOKEN: ${{ steps.generate_token.outputs.token }}
