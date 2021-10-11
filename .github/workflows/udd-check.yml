@@ -36,9 +36,11 @@ jobs:
         - name: Install udd
           run: |
             deno install -A -f -n udd https://deno.land/x/udd/main.ts
-        - name: Check Update
+        - name: Check update Deno dependency
           run: |
-            udd ${{ inputs.deps_file }}
+            udd ${{ inputs.deps_file }} > update.txt
+            cat update.txt
+            sed -n -e '/^Successfully updated:$/,$p' update.txt
         - name: Git diff
           id: diff
           continue-on-error: true
