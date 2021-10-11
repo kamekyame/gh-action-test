@@ -47,15 +47,25 @@ jobs:
             git diff --cached --quiet ${{ inputs.deps_file }}
         - run: |
             echo ${{ steps.diff.outcome }}
+        - name: Create Branch Name
+          if: steps.diff.outcome == 'failure'
+          id: branch
+          env:
+            TZ: 'Asia/Tokyo'
+          run: | 
+            DATE=`date +"%Y%m%d"`
+            BRANCH_NAME="udd_$DATE"
+            echo "::set-output name=name::$BRANCH_NAME"
         - name: Git checkout
           if: steps.diff.outcome == 'failure'
           run: | 
-            git checkout -b actions/udd
+            echo ${{ steps.branch.outputs.name }}
+            git checkout -b ${{ steps.branch.outputs.name }}
         - name: Git commit
           if: steps.diff.outcome == 'failure'
           run: |
             git commit -m "Update dependency"
-            git push --set-upstream origin actions/udd
+            git push --set-upstream origin ${{ steps.branch.outputs.name }}
         - name: Create Pull Request
           if: steps.diff.outcome == 'failure'
           run: gh pr create --title "Update Deno Dependency" --body ""
