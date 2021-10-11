@@ -8,3 +8,6 @@ jobs:
     uses: kamekyame/gh-actions-test/.github/workflows/udd-check.yml@main
     with:
       deps_file: udd-check/deps.ts
+      APP_ID: ${{ secrets.APP_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    

@@ -6,6 +6,11 @@ on:
       deps_file:
         required: false
         type: string
+    secrets:
+      APP_ID:
+        required: true
+      PRIVATE_KEY:
+        required: true
 
 jobs:
   udd-check:
