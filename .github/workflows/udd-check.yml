@@ -42,8 +42,8 @@ jobs:
             ls
             cat update.txt
             echo "aaa"
-            sed -e '/^Successfully updated:$/,$p' update.txt
-            ceho 'ccc'
+            sed -e '/Successfully updated:/,$p' update.txt
+            echo 'ccc'
             cat update.txt
             echo "bbb"
             sed -e '1,$p' update.txt
