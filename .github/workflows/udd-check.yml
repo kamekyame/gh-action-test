@@ -18,7 +18,7 @@ jobs:
     steps:
         - name: Show inputs
           run: |
-            echo "deps file is ${{ inputs.deps_file }}""
+            echo "deps file is ${{ inputs.deps_file }}"
         - uses: actions/checkout@v2
         - name: Generate token
           id: generate_token
