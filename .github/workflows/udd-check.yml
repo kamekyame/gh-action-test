@@ -11,6 +11,7 @@ jobs:
   udd-check:
     runs-on: ubuntu-latest
     steps:
+        - name: Start udd check(${{ inputs.deps_file }})
         - run: |
             echo ${{ inputs.deps_file }}
       # - uses: actions/checkout@v2
