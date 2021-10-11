@@ -41,6 +41,7 @@ jobs:
             udd ${{ inputs.deps_file }} > udd.txt
             cat udd.txt
             sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
+            sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" body.txt
         - name: Git diff
           id: diff
           continue-on-error: true
