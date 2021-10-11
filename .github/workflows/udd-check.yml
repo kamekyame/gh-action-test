@@ -42,7 +42,7 @@ jobs:
         - name: Git diff
           id: diff
           run: |
-            git add deps.ts
+            git add ${{ inputs.deps_file }}
             if git diff --exit-code deps.ts ; then
               echo "::set-output name=changes_exist::true"
             else
