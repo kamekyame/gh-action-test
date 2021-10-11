@@ -38,13 +38,9 @@ jobs:
             deno install -A -f -n udd https://deno.land/x/udd/main.ts
         - name: Check update Deno dependency
           run: |
-            udd ${{ inputs.deps_file }} > update.txt
-            ls
-            cat update.txt
-            echo "aaa"
-            sed -i -n -e '/Successfully updated:/,$p' update.txt
-            echo 'ccc'
-            cat update.txt
+            udd ${{ inputs.deps_file }} > udd.txt
+            cat udd.txt
+            sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
         - name: Git diff
           id: diff
           continue-on-error: true
@@ -72,6 +68,6 @@ jobs:
             git push --set-upstream origin ${{ steps.branch.outputs.name }}
         - name: Create Pull Request
           if: steps.diff.outcome == 'failure'
-          run: gh pr create --title "Update Deno Dependency" --body ""
+          run: gh pr create --title "Update Deno Dependency" --body-file body.txt
           env:
             GH_TOKEN: ${{ steps.generate_token.outputs.token }}
