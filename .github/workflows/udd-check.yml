@@ -45,7 +45,7 @@ jobs:
             sed -n -e '/^Successfully updated:$/,$p' update.txt > sed.txt
             cat sed.txt
             echo "bbb"
-            sed -n -e '1,$p' update.txt
+            sed -e '1,$p' update.txt
         - name: Git diff
           id: diff
           continue-on-error: true
