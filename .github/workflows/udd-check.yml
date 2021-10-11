@@ -43,7 +43,7 @@ jobs:
           id: diff
           continue-on-error: true
           run: |
-            git add ${{ inputs.deps_file }}
+            git diff --quiet ${{ inputs.deps_file }}
         - run: |
             echo ${{ steps.diff.outcome }}
         - name: Git checkout
