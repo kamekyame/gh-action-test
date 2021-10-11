@@ -18,7 +18,7 @@ jobs:
     steps:
         - name: Show inputs
           run: |
-            echo deps file is ${{ inputs.deps_file }}
+            echo "deps file is ${{ inputs.deps_file }}""
         - uses: actions/checkout@v2
         - name: Generate token
           id: generate_token
@@ -41,24 +41,20 @@ jobs:
             udd ${{ inputs.deps_file }}
         - name: Git diff
           id: diff
+          continue-on-error: true
           run: |
             git add ${{ inputs.deps_file }}
-            if git diff --exit-code deps.ts ; then
-              echo "::set-output name=changes_exist::true"
-            else
-              echo "::set-output name=changes_exist::false"
-            fi
         - name: Git checkout
-          if: steps.diff.outputs.changes_exist == 'true'
+          if: steps.diff.outcome == 'success'
           run: | 
             git checkout -b actions/udd
         - name: Git commit
-          if: steps.diff.outputs.changes_exist == 'true'
+          if: steps.diff.outcome == 'success'
           run: |
             git commit -m "Update dependency"
             git push --set-upstream origin actions/udd
         - name: Create Pull Request
-          if: steps.diff.outputs.changes_exist == 'true'
+          if: steps.diff.outcome == 'success'
           run: gh pr create --title "Update Deno Dependency" --body ""
           env:
             GH_TOKEN: ${{ steps.generate_token.outputs.token }}
