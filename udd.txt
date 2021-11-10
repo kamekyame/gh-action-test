@@ -1,0 +1,4 @@
+[33mudd-check/deps.ts[39m
+[999D[K[1/1] Looking for releases: https://deno.land/std@0.110.0/uuid/mod.ts[999D[K[1/1] Attempting update: https://deno.land/std@0.110.0/uuid/mod.ts -> 0.114.0[999D[K[1/1] Update successful: https://deno.land/std@0.110.0/uuid/mod.ts -> 0.114.0[1m
+Successfully updated:[22m
+[32mhttps://deno.land/std@0.110.0/uuid/mod.ts[39m 0.110.0 -> 0.114.0[33m[39m
