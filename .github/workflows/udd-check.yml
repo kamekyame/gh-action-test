@@ -26,20 +26,13 @@ jobs:
           with:
             app_id: ${{ secrets.APP_ID }}
             private_key: ${{ secrets.PRIVATE_KEY }}
-        - name: Git config
-          run: |
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
         - uses: denoland/setup-deno@v1
           with:
             deno-version: v1.x
-        - name: Install udd
-          run: |
-            deno install -A -f -n udd https://deno.land/x/udd/main.ts
         - name: Check update Deno dependency
           id: check_udd
           run: |
-            udd ${{ inputs.deps_file }} > udd.txt
+            deno run -A https://deno.land/x/udd/main.ts ${{ inputs.deps_file }} > udd.txt
             cat udd.txt
             sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
             sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" body.txt
