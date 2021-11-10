@@ -1,0 +1,12 @@
+{
+    "lint": {
+        "files": {
+            "include": ["dfl-check/"]
+        }
+    },
+    "fmt": {
+        "files": {
+            "include": ["dfl-check/"]
+        }
+    }
+}

@@ -1,0 +1,11 @@
+name: dfl check test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: kamekyame/gh-actions-test/.github/workflows/dfl-check.yml@main
+    with:
+      config_file: udd-check/deps.ts
+    
