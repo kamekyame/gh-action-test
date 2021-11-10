@@ -7,5 +7,5 @@ jobs:
   call-workflow:
     uses: kamekyame/gh-actions-test/.github/workflows/dfl-check.yml@main
     with:
-      config_file: udd-check/deps.ts
+      config_file: deno.json
     
