@@ -44,7 +44,9 @@ jobs:
             sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
             sed -i -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" body.txt
             BODY=`cat body.txt`
-            echo ::set-output name=body_text::$BODY
+            echo ::set-output name=body_text::"$BODY"
+            rm -f udd.txt
+            rm -f body.txt
         - name: Create pull request
           uses: peter-evans/create-pull-request@v3
           with:
