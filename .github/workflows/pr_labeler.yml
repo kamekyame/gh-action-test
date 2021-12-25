@@ -13,8 +13,8 @@ jobs:
       - name: create label
         id: create_label
         env:
-          PR_TITLE: ${{ github.event.issue.title }}
-          # PR_TITLE: ${{ github.event.pull_request.title }}
+          # PR_TITLE: ${{ github.event.issue.title }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
           regex='^(fix|feat|chore|docs|refactor|test)'
           if [[ $PR_TITLE =~ $regex ]];
