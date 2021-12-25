@@ -1,0 +1,25 @@
+name: Pull Request Labeler
+
+on:
+  workflow_call
+
+jobs:
+  add-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create label
+        id: create_label
+        env:
+          # PR_TITLE: ${{ github.event.issue.title }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          regex='^(fix|feat|chore|docs|refactor|test)'
+          if [[ $PR_TITLE =~ $regex ]];
+          then
+            echo ${BASH_REMATCH[1]};
+            echo "::set-output name=label_name::${BASH_REMATCH[1]}"
+          fi
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: ${{ steps.create_label.outputs.label_name}}
