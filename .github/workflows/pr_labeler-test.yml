@@ -1,0 +1,13 @@
+name: pr labeler test
+
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  call-workflow:
+    uses: kamekyame/gh-actions-test/.github/workflows/pr_labeler.yml@main
+    with:
+      title: ${{ github.event.pull_request.title }}
