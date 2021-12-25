@@ -1,0 +1,17 @@
+name: Pull Request Labeler
+
+on:
+  pull_request:
+    types: [opened, edited]
+  issues:
+    types: [opened]
+
+jobs:
+  add-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "bug"
+          remove-labels: "in progress"
