@@ -2,10 +2,6 @@ name: Deno format & lint checker
 
 on:
   workflow_call:
-    inputs:
-      config_file:
-        required: true
-        type: string
 
 jobs:
   udd-check:
@@ -20,7 +16,7 @@ jobs:
             deno-version: v1.x
         - name: Run fmt
           run: |
-            deno fmt -c ${{ inputs.config_file }} --check
+            deno fmt --check
         - name: Run lint
           run: |
-            deno lint -c ${{ inputs.config_file }}
+            deno lint
