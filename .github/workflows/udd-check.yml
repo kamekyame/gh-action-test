@@ -33,7 +33,7 @@ jobs:
           id: check_udd
           run: |
             cat ${{ inputs.deps_file }}
-            if [ "${{ inputs.deps_file }}" = ""]; then
+            if [ -n "${{ inputs.deps_file }}" ]; then
               deno run -A https://deno.land/x/udd/main.ts ${{ inputs.deps_file }} > udd.txt
             else
               deno run -A https://deno.land/x/udd/main.ts *.ts > udd.txt
