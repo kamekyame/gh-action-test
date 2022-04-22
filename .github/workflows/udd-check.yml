@@ -32,6 +32,7 @@ jobs:
         - name: Check update Deno dependency
           id: check_udd
           run: |
+            cat ${{ inputs.deps_file }}
             deno run -A https://deno.land/x/udd/main.ts ${{ inputs.deps_file }} > udd.txt
             cat udd.txt
             sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
@@ -46,10 +47,10 @@ jobs:
         - name: Create pull request
           uses: peter-evans/create-pull-request@v3
           with:
-            commit-message: "chore(deps): update deno dependencies"
+            commit-message: "build(deps): Bump deno dependencies"
             token: ${{ steps.generate_token.outputs.token }}
             branch: 'deno-dependabot'
             delete-branch: true
-            title: 'Update Deno Dependency'
-            body: ${{ steps.check_udd.outputs.body_text}}
+            title: 'build(deps): Bump deno dependencies'
+            body: ${{ steps.check_udd.outputs.body_text }}
             labels: 'dependencies'
