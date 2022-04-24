@@ -6,7 +6,7 @@ on:
 jobs:
   call-workflow:
     uses: kamekyame/gh-actions-test/.github/workflows/dfl-check.yml@main
-  call-workflow:
+  call-workflow-with-config_file:
     uses: kamekyame/gh-actions-test/.github/workflows/dfl-check.yml@main
     with:
       config_file: deno.json
