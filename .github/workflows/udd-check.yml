@@ -36,7 +36,7 @@ jobs:
             if [ -n "${{ inputs.deps_file }}" ]; then
               deno run -A https://deno.land/x/udd/main.ts ${{ inputs.deps_file }} > udd.txt
             else
-              deno run -A https://deno.land/x/udd/main.ts **/*.ts **/*.js > udd.txt
+              deno run -A https://deno.land/x/udd/main.ts **/*.ts **/*.js *.ts *.js > udd.txt
             fi
             cat udd.txt
             sed -n -e '/Successfully updated:/,$p' udd.txt > body.txt
